@@ -12,9 +12,9 @@ HOW TO RUN:
 # ──────────────────────────────────────────────────────────────────
 #  CONFIGURATION  — Update your Google credentials here!
 # ──────────────────────────────────────────────────────────────────
-GMAIL_ADDRESS      = "mrk21creates@gmail.com"   # Your Gmail address
-GMAIL_APP_PASSWORD = "tjwo itvr zwvz qced"    # Your 16-char Google App Password
-EXCEL_FILE         = "emails.xlsx"              # Your master Excel file
+GMAIL_ADDRESS      = "YOUR EMAIL HERE "   # Your Gmail address
+GMAIL_APP_PASSWORD = " Google App Password"    # Your 16-char Google App Password
+EXCEL_FILE         = "emails.xlsx"              # Your master Excel file STRICTLY THE FILE NAME SHOULD BE EMAILS
 DAILY_LIMIT        = 500                        # Max emails per script run
 DELAY_SECONDS      = 5                          # Pause between sends (to prevent spam blocks)
 

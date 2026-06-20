@@ -12,31 +12,22 @@ HOW TO RUN:
 # ──────────────────────────────────────────────────────────────────
 #  CONFIGURATION  — Update your Google credentials here!
 # ──────────────────────────────────────────────────────────────────
-GMAIL_ADDRESS      = "YOUR EMAIL HERE "   # Your Gmail address
-GMAIL_APP_PASSWORD = " Google App Password"    # Your 16-char Google App Password
-EXCEL_FILE         = "emails.xlsx"              # Your master Excel file STRICTLY THE FILE NAME SHOULD BE EMAILS
+GMAIL_ADDRESS      = " Gmail address"   # Your Gmail address
+GMAIL_APP_PASSWORD = "Google App Password"    # Your 16-char Google App Password
+EXCEL_FILE         = "emails.xlsx"              # Your master Excel file
 DAILY_LIMIT        = 500                        # Max emails per script run
 DELAY_SECONDS      = 5                          # Pause between sends (to prevent spam blocks)
 
 # ── Email Content Configuration ───────────────────────────────────
-EMAIL_SUBJECT      = "We'd love your feedback!"
-GOOGLE_FORM_LINK   = "https://forms.gle/forms.gle/UpN9xLL7JEoyS41R6"   # ← paste your form link
+EMAIL_SUBJECT      = "Help Us Build Something You Loveee 👀✨"
+GOOGLE_FORM_LINK   = "https://forms.gle/UpN9xLL7JEoyS41R6"   # ← paste your form link
 
-# Use {name} for the auto-extracted name and {form_link} for your URL
+# Fixed layout payload string structure
 EMAIL_BODY_TEMPLATE = """\
-Hi {name},
 
-I hope this message finds you well.
+ENTER THE MESSAGE HERE 
 
-We're gathering feedback and would love to hear from you. It only takes
-2–3 minutes — please fill in the short form below:
 
-  {form_link}
-
-Thank you so much for your time. Your input genuinely matters to us.
-
-Warm regards,
-mrk
 """
 # ──────────────────────────────────────────────────────────────────
 
@@ -96,14 +87,18 @@ def main():
             print("✅  Authentication Successful. Starting bulk dispatch...\n")
 
             for idx, row in queue.iterrows():
-                recipient = str(row["Email Address"]).strip()
+                # Strictly sanitize strings to strip hidden control linebreaks
+                recipient = str(row["Email Address"]).strip().replace("\r", "").replace("\n", "")
                 name      = username_from_email(recipient)
                 body      = EMAIL_BODY_TEMPLATE.format(name=name, form_link=GOOGLE_FORM_LINK)
 
                 msg = EmailMessage()
-                msg["From"]    = GMAIL_ADDRESS
+                # Enforce clean single lines for headers
+                msg["From"]    = GMAIL_ADDRESS.strip().replace("\r", "").replace("\n", "")
                 msg["To"]      = recipient
-                msg["Subject"] = EMAIL_SUBJECT
+                msg["Subject"] = EMAIL_SUBJECT.strip().replace("\r", "").replace("\n", "")
+                
+                # Explicitly pass structural body content safely
                 msg.set_content(body)
 
                 try:
@@ -146,3 +141,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+

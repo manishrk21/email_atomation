@@ -13,7 +13,7 @@ Then open  http://localhost:5000  in your browser.
 # ──────────────────────────────────────────────────────────────────
 #  CONFIGURATION
 # ──────────────────────────────────────────────────────────────────
-GMAIL_ADDRESS      = "mrk21creates@gmail.com"
+GMAIL_ADDRESS      = "YOUR_EMAIL"
 GMAIL_APP_PASSWORD = "xxxx xxxx xxxx xxxx"    # 16-char Google App Password
 DAILY_LIMIT        = 500
 DELAY_SECONDS      = 5
